@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">EvergreenMusicPlayer</string>
+    <string name="need_access">We need some access.</string>
+    <string name="ok">OK!</string>
+    <string name="location">Location</string>
+    <string name="storage">Storage</string>
+    <string name="storage_desc">Don\'t worry your data is private</string>
+    <string name="location_desc">Please enable location access so \n we could provide you accurate results about nearest music shows</string>
+    <string name="allow_access">Allow Access</string>
+    <string name="duration">Duration: %1$s </string>
+    <string name="total_songs">Total Songs: %1$d </string>
+    <string name="user_name">User Name</string>
+    <string name="good">"Good "</string>
+    <string name="morning">Morning</string>
+    <string name="afternoon">Afternoon</string>
+    <string name="evening">Evening</string>
+    <string name="night">Night</string>
+    <string name="recently_played">Recently Played</string>
+</resources>
