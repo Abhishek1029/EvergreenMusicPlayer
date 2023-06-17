@@ -12,9 +12,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.abhishek.evergreenmusicplayer.data.Songs
 import com.abhishek.evergreenmusicplayer.ui.theme.EvergreenMusicPlayerTheme
 import com.abhishek.evergreenmusicplayer.utils.*
+import com.abhishek.evergreenmusicplayer.utils.EMPConstants.displayTabLayout
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
@@ -33,12 +33,7 @@ fun EvergreenMusicPlayerApp() {
             val navController = rememberNavController()
             val permissionState =
                 rememberPermissionState(permission = Manifest.permission.READ_EXTERNAL_STORAGE)
-            /* val startDestination = if (permissionState.status.isGranted) {
-                 HomeDestination.route
-             } else {
-                 PermissionDestination.route
-             }*/
-            val startDestination = HomeDestination.route
+            val startDestination = permissionState.getStartDestination()
             NavHost(navController = navController, startDestination = startDestination) {
                 composable(PermissionDestination.route) {
                     PermissionScreen(permissionState)
@@ -49,25 +44,10 @@ fun EvergreenMusicPlayerApp() {
                     }
                 }
                 composable(HomeDestination.route) {
-                    TabLayout(
-                        onSongClick = { song ->
-                            navController.navigate(
-                                PlayerDestination.createRoute(
-                                    Uri.encode(
-                                        Gson().toJson(
-                                            song
-                                        )
-                                    )
-                                )
-                            )
-                        },
-                        onArtistClick = { artistId ->
-                            navController.navigate(ArtistDestination.createRoute(artistId))
-                        },
-                        onAlbumClick = { albumId ->
-                            navController.navigate(AlbumDestination.createRoute(albumId))
-                        }
-                    )
+                    if (displayTabLayout)
+                        HomeTabLayout(navController = navController)
+                    else
+                        HomeWithBottomNav(navController)
                 }
                 composable(PlayerDestination.route,
                     arguments = listOf(
@@ -78,12 +58,37 @@ fun EvergreenMusicPlayerApp() {
                 ) { backStackEntry ->
                     PlayerScreen(backStackEntry.arguments?.getParcelable("song"))
                 }
-                composable(ArtistDestination.route) { backStackEntry ->
+                composable(ArtistDetailDestination.route) { backStackEntry ->
                     ArtistDetail(backStackEntry.arguments?.getString("artistId"))
                 }
 
-                composable(AlbumDestination.route) { backStackEntry ->
+                composable(AlbumDetailDestination.route) { backStackEntry ->
                     AlbumDetail(backStackEntry.arguments?.getString("albumId"))
+                }
+
+                composable(SongsDestination.route) {
+                    RenderSongs { song ->
+                        navController.navigate(
+                            PlayerDestination.createRoute(
+                                Uri.encode(
+                                    Gson().toJson(
+                                        song
+                                    )
+                                )
+                            )
+                        )
+                    }
+                }
+                composable(ArtistDestination.route) {
+                    RenderArtists { artistId ->
+                        navController.navigate(ArtistDetailDestination.createRoute(artistId))
+                    }
+                }
+
+                composable(AlbumDestination.route) {
+                    RenderAlbums { albumId ->
+                        navController.navigate(AlbumDetailDestination.createRoute(albumId))
+                    }
                 }
             }
         }

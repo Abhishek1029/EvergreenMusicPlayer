@@ -67,7 +67,7 @@ fun filteredSongs(songsList: MutableList<Songs>) =
 
 fun changeColorOfTextInString(changeableString: String, str: String): AnnotatedString {
     val annotatedString = buildAnnotatedString {
-        withStyle(SpanStyle(Color.Green)) {
+        withStyle(SpanStyle(Color.Magenta)) {
             append(changeableString)
         }
         append(" ")
@@ -77,8 +77,8 @@ fun changeColorOfTextInString(changeableString: String, str: String): AnnotatedS
 }
 
 val permissionItemList = listOf(
-    PermissionItem(R.string.storage, R.string.storage_desc, R.drawable.ic_baseline_music_note_24),
-    PermissionItem(R.string.location, R.string.location_desc, R.drawable.ic_baseline_music_note_24),
+    PermissionItem(R.string.storage, R.string.storage_desc, R.drawable.baseline_store_24),
+  //  PermissionItem(R.string.location, R.string.location_desc, R.drawable.ic_baseline_music_note_24),
 )
 
 fun Context?.checkPermission(permission: String) =

@@ -47,7 +47,7 @@ fun PermissionScreen(permissionState: PermissionState) {
                 .height(50.dp)
         )
         /**
-         * LazyColumn:- Used for displaying list of Items
+         * LazyColumn:- Used for displaying list of Items Vertically
          */
         LazyColumn(
             contentPadding = PaddingValues(top = 10.dp, bottom = 10.dp),
@@ -55,7 +55,7 @@ fun PermissionScreen(permissionState: PermissionState) {
                 .padding(10.dp)
                 .fillMaxWidth()
         ) {
-            items(permissionItemList){ item->
+            items(permissionItemList) { item ->
                 PermissionListComposable(item)
             }
         }
@@ -76,16 +76,17 @@ fun PermissionListComposable(permissionItem: PermissionItem) {
             .padding(top = 10.dp, bottom = 10.dp)
     ) {
         Icon(painter = painterResource(id = permissionItem.icon), contentDescription = null)
+        Spacer(modifier = Modifier.width(10.dp))
         Column {
             CustomText(
                 text = stringResource(id = permissionItem.title),
-                fontSize = 16.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
             CustomText(
                 text = stringResource(id = permissionItem.description),
-                fontSize = 14.sp,
-                color = Color.LightGray
+                fontSize = 16.sp,
+                color = Color.Cyan
             )
         }
     }

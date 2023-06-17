@@ -16,4 +16,7 @@
     <string name="evening">Evening</string>
     <string name="night">Night</string>
     <string name="recently_played">Recently Played</string>
+    <string name="artist">Artist</string>
+    <string name="album">Album</string>
+    <string name="songs">Songs</string>
 </resources>

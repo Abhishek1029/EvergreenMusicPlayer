@@ -1,6 +1,8 @@
 package com.abhishek.evergreenmusicplayer.ui.composefiles
 
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -8,6 +10,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -33,14 +36,18 @@ fun ArtistDetail(
             val (icon, artistName, songCount, songList) = createRefs()
             val startGuideline = createGuidelineFromStart(16.dp)
             val endGuideline = createGuidelineFromEnd(16.dp)
-            GlideImage(model = getUriFromAlbumId(artist?.firstSong?.albumId ?: ""),
+            GlideImage(
+                model = getUriFromAlbumId(artist?.firstSong?.albumId ?: ""),
                 contentDescription = null,
                 Modifier
-                    .size(200.dp)
+                    .fillMaxWidth()
+                    .height(250.dp)
                     .constrainAs(icon) {
-                        top.linkTo(parent.top, margin = 16.dp)
+                        top.linkTo(parent.top)
                         centerHorizontallyTo(parent)
-                    }) {
+                    },
+                contentScale = ContentScale.FillBounds
+            ) {
                 it.placeholder(R.drawable.artist_image)
             }
             CustomText(
@@ -54,7 +61,7 @@ fun ArtistDetail(
             )
 
             CustomText(
-                text = (artist?.songsList?.size?:0).getSongText(),
+                text = (artist?.songsList?.size ?: 0).getSongText(),
                 Modifier.constrainAs(songCount) {
                     start.linkTo(startGuideline)
                     top.linkTo(artistName.bottom, margin = 5.dp)

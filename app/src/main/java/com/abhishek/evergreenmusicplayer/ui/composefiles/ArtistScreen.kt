@@ -30,7 +30,7 @@ fun RenderArtists(
     val context = LocalContext.current
     val listOfArtist = ArtistRepoImpl().getArtistList(context)
     LazyVerticalGrid(
-        columns = GridCells.Fixed(1),
+        columns = GridCells.Fixed(2),
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalArrangement = Arrangement.Top
     ) {
@@ -45,15 +45,15 @@ fun RenderArtists(
                     GlideImage(
                         model = getUriFromAlbumId(item.firstSong.albumId),
                         contentDescription = null,
-                        Modifier.height(150.dp),
+                        Modifier.height(175.dp),
                         contentScale = ContentScale.FillBounds
                     ){
                         it.placeholder(R.drawable.artist_image)
                     }
                     CustomText(
                         text = item.firstSong.artistName,
-                        fontSize = 13.sp,
-                        color = Color.White,
+                        fontSize = 16.sp,
+                        color = Color.Black,
                         maxLines = 2,
                         fontWeight = FontWeight.Bold
                     )

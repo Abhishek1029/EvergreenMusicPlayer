@@ -1,13 +1,14 @@
 package com.abhishek.evergreenmusicplayer.utils
 
-import android.net.Uri
-import com.abhishek.evergreenmusicplayer.data.Songs
+import com.abhishek.evergreenmusicplayer.utils.EMPConstants.ALBUM
 import com.abhishek.evergreenmusicplayer.utils.EMPConstants.ALBUM_DETAIL
+import com.abhishek.evergreenmusicplayer.utils.EMPConstants.ARTIST
 import com.abhishek.evergreenmusicplayer.utils.EMPConstants.ARTIST_DETAIL
 import com.abhishek.evergreenmusicplayer.utils.EMPConstants.DASHBOARD
 import com.abhishek.evergreenmusicplayer.utils.EMPConstants.HOME
 import com.abhishek.evergreenmusicplayer.utils.EMPConstants.PERMISSION
 import com.abhishek.evergreenmusicplayer.utils.EMPConstants.PLAYER
+import com.abhishek.evergreenmusicplayer.utils.EMPConstants.SONGS
 
 interface NavDestinations {
     val route: String
@@ -37,16 +38,31 @@ object PlayerDestination : NavDestinations {
     fun createRoute(song: String) = "player/$song"
 }
 
+object SongsDestination : NavDestinations {
+    override val route: String
+        get() = SONGS
+}
 object ArtistDestination : NavDestinations {
+    override val route: String
+        get() = ARTIST
+}
+
+object AlbumDestination : NavDestinations {
+    override val route: String
+        get() = ALBUM
+}
+object ArtistDetailDestination : NavDestinations {
     override val route: String
         get() = ARTIST_DETAIL
 
     fun createRoute(artistId: String) = "artistDetail/$artistId"
 }
 
-object AlbumDestination : NavDestinations {
+object AlbumDetailDestination : NavDestinations {
     override val route: String
         get() = ALBUM_DETAIL
 
     fun createRoute(albumId: String) = "albumDetail/$albumId"
 }
+
+

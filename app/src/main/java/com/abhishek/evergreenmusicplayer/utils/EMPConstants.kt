@@ -11,5 +11,9 @@ object EMPConstants {
     const val PLAYER = "player/{song}"
     const val ARTIST_DETAIL = "artistDetail/{artistId}"
     const val ALBUM_DETAIL = "albumDetail/{albumId}"
+    const val ARTIST = "artist"
+    const val ALBUM = "album"
     const val ART_WORK_URI = "content://media/external/audio/albumart"
+    // make this as true if want to display tabs
+    const val displayTabLayout = false
 }

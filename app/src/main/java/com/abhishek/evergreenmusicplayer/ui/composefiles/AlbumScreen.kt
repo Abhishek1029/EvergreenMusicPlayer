@@ -52,8 +52,8 @@ fun RenderAlbums(
                     }
                     CustomText(
                         text = item.firstSong.albumName,
-                        fontSize = 13.sp,
-                        color = Color.White,
+                        fontSize = 16.sp,
+                        color = Color.Black,
                         maxLines = 2,
                         fontWeight = FontWeight.Bold
                     )
