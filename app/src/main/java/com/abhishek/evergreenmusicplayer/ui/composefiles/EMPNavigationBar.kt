@@ -8,7 +8,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
@@ -28,7 +27,7 @@ fun EMPNavigationBar(
     ) {
         bottomTabItems.forEach { bottomTabItems ->
             Log.e(TAG, "EMPNavigationBar: " )
-            NavigationBarItem(selected = appState.currentDestination.isTopLevelDestinationInHierarchy(
+            NavigationBarItem(selected = appState.currentDestination.isDestinationContains(
                 bottomTabItems
             ),
                 icon = {
@@ -41,5 +40,5 @@ fun EMPNavigationBar(
     }
 }
 
-private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: BottomNavScreen) =
+private fun NavDestination?.isDestinationContains(destination: BottomNavScreen) =
     this?.hierarchy?.any { it.route == destination.route } == true
