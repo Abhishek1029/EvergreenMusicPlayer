@@ -3,8 +3,8 @@
     <string name="need_access">We need some access.</string>
     <string name="ok">OK!</string>
     <string name="location">Location</string>
-    <string name="storage">Storage</string>
-    <string name="storage_desc">Don\'t worry your data is private</string>
+    <string name="storage">Storage Access</string>
+    <string name="storage_desc">The app needs permission to access your device storage for playing music</string>
     <string name="location_desc">Please enable location access so \n we could provide you accurate results about nearest music shows</string>
     <string name="allow_access">Allow Access</string>
     <string name="duration">Duration: %1$s </string>
