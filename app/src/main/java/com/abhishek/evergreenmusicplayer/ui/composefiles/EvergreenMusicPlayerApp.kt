@@ -28,12 +28,12 @@ import com.google.gson.Gson
 @ExperimentalPagerApi
 @Composable
 fun EvergreenMusicPlayerApp(
-    navController: NavHostController,
-    permissionState: PermissionState = rememberPermissionState(permission = EMPAudioPermission)
+    permissionState: PermissionState = rememberPermissionState(permission = EMPAudioPermission),
+    appState: EMPAppState = rememberEMPAppState()
 ) {
     when (permissionState.status) {
         PermissionStatus.Granted -> {
-            EMPAppContent(navController, permissionState)
+            EMPAppContent(permissionState,appState)
         }
 
         is PermissionStatus.Denied -> {

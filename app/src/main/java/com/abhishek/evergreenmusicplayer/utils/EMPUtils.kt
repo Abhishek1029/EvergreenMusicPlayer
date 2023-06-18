@@ -13,6 +13,8 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
 import com.abhishek.evergreenmusicplayer.R
 import com.abhishek.evergreenmusicplayer.data.PermissionItem
 import com.abhishek.evergreenmusicplayer.data.Songs
@@ -116,3 +118,6 @@ fun Int.getSongText() = if (this > 1) {
 } else {
     "$this Song"
 }
+
+operator fun NavDestination?.contains(route: String) =
+    this?.hierarchy?.any { it.route == route } == true

@@ -1,5 +1,6 @@
 package com.abhishek.evergreenmusicplayer.ui.composefiles
 
+import android.util.Log
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
@@ -51,6 +52,6 @@ fun HomeWithBottomNav(
             }
         }
     ){
-
+        Log.e("TAG", "HomeWithBottomNav: $it")
     }
 }

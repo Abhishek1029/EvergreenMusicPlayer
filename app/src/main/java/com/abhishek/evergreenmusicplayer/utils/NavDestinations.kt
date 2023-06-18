@@ -8,6 +8,8 @@ import com.abhishek.evergreenmusicplayer.utils.EMPConstants.DASHBOARD
 import com.abhishek.evergreenmusicplayer.utils.EMPConstants.HOME
 import com.abhishek.evergreenmusicplayer.utils.EMPConstants.PERMISSION
 import com.abhishek.evergreenmusicplayer.utils.EMPConstants.PLAYER
+import com.abhishek.evergreenmusicplayer.utils.EMPConstants.PLAYLIST
+import com.abhishek.evergreenmusicplayer.utils.EMPConstants.SETTING
 import com.abhishek.evergreenmusicplayer.utils.EMPConstants.SONGS
 
 interface NavDestinations {
@@ -50,6 +52,16 @@ object ArtistDestination : NavDestinations {
 object AlbumDestination : NavDestinations {
     override val route: String
         get() = ALBUM
+}
+
+object PlaylistDestination : NavDestinations {
+    override val route: String
+        get() = PLAYLIST
+}
+
+object SettingDestination : NavDestinations {
+    override val route: String
+        get() = SETTING
 }
 object ArtistDetailDestination : NavDestinations {
     override val route: String
