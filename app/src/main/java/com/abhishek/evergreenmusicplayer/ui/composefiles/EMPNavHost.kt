@@ -17,6 +17,8 @@ import com.abhishek.evergreenmusicplayer.utils.EMPConstants
 import com.abhishek.evergreenmusicplayer.utils.HomeDestination
 import com.abhishek.evergreenmusicplayer.utils.PermissionDestination
 import com.abhishek.evergreenmusicplayer.utils.PlayerDestination
+import com.abhishek.evergreenmusicplayer.utils.PlaylistDestination
+import com.abhishek.evergreenmusicplayer.utils.SettingDestination
 import com.abhishek.evergreenmusicplayer.utils.SongsDestination
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
@@ -87,6 +89,14 @@ fun EMPNavHost(
             RenderAlbums { albumId ->
                 navController.navigate(AlbumDetailDestination.createRoute(albumId))
             }
+        }
+
+        composable(PlaylistDestination.route) {
+            RenderPlayList()
+        }
+
+        composable(SettingDestination.route) {
+            SettingScreen()
         }
     }
 }
