@@ -86,4 +86,8 @@ dependencies {
 
     implementation "com.github.bumptech.glide:compose:1.0.0-alpha.1"
 
+    def media3_version = "1.0.2"
+    implementation "androidx.media3:media3-exoplayer:$media3_version"
+    implementation "androidx.media3:media3-session:$media3_version"
+
 }
