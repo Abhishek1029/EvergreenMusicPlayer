@@ -3,8 +3,10 @@ package com.abhishek.evergreenmusicplayer.utils
 import android.content.ContentResolver
 import android.content.ContentUris
 import android.content.Context
+import android.database.ContentObserver
 import android.database.Cursor
 import android.net.Uri
+import android.os.Build
 import android.os.Parcelable
 import android.provider.MediaStore
 import androidx.compose.ui.graphics.Color
@@ -24,6 +26,8 @@ import com.abhishek.evergreenmusicplayer.utils.EMPConstants.ART_WORK_URI
 import com.abhishek.evergreenmusicplayer.utils.EMPConstants.PLAYLISTS
 import com.abhishek.evergreenmusicplayer.utils.EMPConstants.SONGS
 import com.google.gson.Gson
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.callbackFlow
 
 object EMPUtils {
     val tabTitles = listOf(
@@ -35,7 +39,11 @@ object EMPUtils {
 
 fun retrieveContentResolver(context: Context): ContentResolver? = context.contentResolver
 
-val retrieveUri: Uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+val retrieveUri: Uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+    MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+} else {
+    MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+}
 
 val projection = arrayOf(
     MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TITLE,
@@ -121,3 +129,14 @@ fun Int.getSongText() = if (this > 1) {
 
 operator fun NavDestination?.contains(route: String) =
     this?.hierarchy?.any { it.route == route } == true
+
+internal fun ContentResolver.observe(uri: Uri) = callbackFlow {
+    val observer = object : ContentObserver(null) {
+        override fun onChange(selfChange: Boolean) {
+            trySend(selfChange)
+        }
+    }
+    registerContentObserver(uri, true, observer)
+    trySend(true)
+    awaitClose { unregisterContentObserver(observer) }
+}
