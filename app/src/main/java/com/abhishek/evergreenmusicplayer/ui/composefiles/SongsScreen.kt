@@ -1,53 +1,45 @@
 package com.abhishek.evergreenmusicplayer.ui.composefiles
 
-import android.net.Uri
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Icon
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.navigation.NavController
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.abhishek.evergreenmusicplayer.R
 import com.abhishek.evergreenmusicplayer.data.Songs
-import com.abhishek.evergreenmusicplayer.ui.SongsRepoImpl
-import com.abhishek.evergreenmusicplayer.utils.PlayerDestination
-import com.abhishek.evergreenmusicplayer.utils.formatMillis
+import com.abhishek.evergreenmusicplayer.ui.repository.SongsRepoImpl
+import com.abhishek.evergreenmusicplayer.ui.viewmodel.MusicViewModel
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 
 private const val TAG = "SongsScreen"
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun RenderSongs(onSongClick: (Songs) -> Unit) {
-    val songs = SongsRepoImpl()
-    val songsList = songs.getSongs(LocalContext.current)
-
+fun RenderSongs(
+    musicViewModel: MusicViewModel = hiltViewModel(),
+    onSongClick: (Songs) -> Unit) {
+    val songState = musicViewModel.songsFlow.collectAsStateWithLifecycle()
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(
-            Color.White
-        )
+                Color.White
+            )
     ) {
         Column {
             CustomText(
-                text = stringResource(id = R.string.total_songs, songsList.size),
+                text = stringResource(id = R.string.total_songs, songState.value.size),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
@@ -55,7 +47,7 @@ fun RenderSongs(onSongClick: (Songs) -> Unit) {
             )
             Spacer(modifier = Modifier.height(10.dp))
             LazyColumn {
-                items(songsList) { song ->
+                items(songState.value) { song ->
                     RenderSong(song, onSongClick)
                 }
             }

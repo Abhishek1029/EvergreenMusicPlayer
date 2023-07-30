@@ -1,24 +1,20 @@
 package com.abhishek.evergreenmusicplayer.ui.composefiles
 
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Icon
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.abhishek.evergreenmusicplayer.R
-import com.abhishek.evergreenmusicplayer.ui.ArtistRepoImpl
+import com.abhishek.evergreenmusicplayer.ui.repository.ArtistRepoImpl
 import com.abhishek.evergreenmusicplayer.utils.getSongText
 import com.abhishek.evergreenmusicplayer.utils.getUriFromAlbumId
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi

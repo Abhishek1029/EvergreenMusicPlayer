@@ -1,8 +1,7 @@
-package com.abhishek.evergreenmusicplayer.ui
+package com.abhishek.evergreenmusicplayer.ui.repository
 
 import android.content.Context
 import com.abhishek.evergreenmusicplayer.data.Album
-import com.abhishek.evergreenmusicplayer.data.Artist
 import com.abhishek.evergreenmusicplayer.data.Songs
 import com.abhishek.evergreenmusicplayer.utils.filteredSongs
 import com.abhishek.evergreenmusicplayer.utils.retrieveCursor

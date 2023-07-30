@@ -75,10 +75,10 @@ fun TabContents(
                 RenderSongs(onSongClick = onSongClick)
             }
             1 -> {
-                RenderArtists(onArtistClick)
+                RenderArtists(onArtistClick = onArtistClick)
             }
             2 -> {
-                RenderAlbums(onAlbumClick)
+                RenderAlbums(onAlbumClick = onAlbumClick)
             }
         }
     }
