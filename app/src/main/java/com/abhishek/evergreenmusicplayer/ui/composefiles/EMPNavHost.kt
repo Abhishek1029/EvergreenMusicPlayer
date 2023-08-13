@@ -3,6 +3,7 @@ package com.abhishek.evergreenmusicplayer.ui.composefiles
 import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,6 +21,7 @@ import com.abhishek.evergreenmusicplayer.utils.PlayerDestination
 import com.abhishek.evergreenmusicplayer.utils.PlaylistDestination
 import com.abhishek.evergreenmusicplayer.utils.SettingDestination
 import com.abhishek.evergreenmusicplayer.utils.SongsDestination
+import com.abhishek.evergreenmusicplayer.utils.showToast
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
 import com.google.gson.Gson
@@ -33,6 +35,7 @@ fun EMPNavHost(
     startDestination: String,
     appState: EMPAppState
 ) {
+    val context = LocalContext.current
     NavHost(navController = navController, startDestination = startDestination) {
         composable(PermissionDestination.route) {
             PermissionScreen(permissionState)
@@ -56,7 +59,15 @@ fun EMPNavHost(
                 }
             )
         ) { backStackEntry ->
-            PlayerScreen(backStackEntry.arguments?.getParcelable("song"))
+            val isPlaying = true
+            PlayerScreen(backStackEntry.arguments?.getParcelable("song"), isPlaying,
+                {
+                    context.showToast("Play Clicked", false)
+                }, {
+                    context.showToast("Pause Clicked", false)
+                }, {}) {
+
+            }
         }
         composable(ArtistDetailDestination.route) { backStackEntry ->
             ArtistDetail(backStackEntry.arguments?.getString("artistId"))
