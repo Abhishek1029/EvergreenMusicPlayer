@@ -21,6 +21,7 @@ fun PlayerScreen(
         PlayerTitleArtist(
             songData
         )
+        PlayerSeekbar()
         PlayerButtons(
             isPlaying,
             onPlayClick = onPlayClick,
