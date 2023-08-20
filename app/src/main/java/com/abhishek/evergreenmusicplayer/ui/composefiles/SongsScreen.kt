@@ -28,7 +28,7 @@ private const val TAG = "SongsScreen"
 @Composable
 fun RenderSongs(
     musicViewModel: MusicViewModel = hiltViewModel(),
-    onSongClick: (Songs) -> Unit) {
+    onSongClick: (Songs, Int) -> Unit) {
     val songState = musicViewModel.songsFlow.collectAsStateWithLifecycle()
     Box(
         modifier = Modifier
@@ -48,7 +48,7 @@ fun RenderSongs(
             Spacer(modifier = Modifier.height(10.dp))
             LazyColumn {
                 items(songState.value) { song ->
-                    RenderSong(song, onSongClick)
+                    RenderSong(song, songState.value.indexOf(song), onSongClick)
                 }
             }
         }

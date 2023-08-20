@@ -21,12 +21,12 @@ import com.bumptech.glide.integration.compose.GlideImage
 
 @ExperimentalGlideComposeApi
 @Composable
-fun RenderSong(song: Songs, onSongClick: (Songs) -> Unit = {}) {
+fun RenderSong(song: Songs, index: Int = 0, onSongClick: (Songs, Int) -> Unit) {
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.clickable {
-            onSongClick(song)
+            onSongClick(song,index)
         }.fillMaxWidth().padding(start = 10.dp, end = 10.dp)
     ) {
         GlideImage(

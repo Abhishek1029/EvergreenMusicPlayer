@@ -90,5 +90,6 @@ dependencies {
     def media3_version = "1.0.2"
     implementation "androidx.media3:media3-exoplayer:$media3_version"
     implementation "androidx.media3:media3-session:$media3_version"
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-guava:1.7.0")
 
 }

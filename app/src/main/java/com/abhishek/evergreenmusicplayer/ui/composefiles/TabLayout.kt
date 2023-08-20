@@ -72,13 +72,13 @@ fun TabContents(
     HorizontalPager(state = pagerState) { page ->
         when (page) {
             0 -> {
-                RenderSongs(onSongClick = onSongClick)
+                //RenderSongs(onSongClick = onSongClick)
             }
             1 -> {
-                RenderArtists(onArtistClick = onArtistClick)
+               // RenderArtists(onArtistClick = onArtistClick)
             }
             2 -> {
-                RenderAlbums(onAlbumClick = onAlbumClick)
+              //  RenderAlbums(onAlbumClick = onAlbumClick)
             }
         }
     }

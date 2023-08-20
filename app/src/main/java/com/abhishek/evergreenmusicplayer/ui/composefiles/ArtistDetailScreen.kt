@@ -73,7 +73,8 @@ fun ArtistDetail(
                 bottom.linkTo(parent.bottom)
             }) {
                 items(artist?.songsList ?: emptyList()) { song ->
-                    RenderSong(song = song)
+                    RenderSong(song = song,onSongClick = {_, _ ->
+                    })
                 }
             }
         }

@@ -73,7 +73,8 @@ fun AlbumDetail(
                 bottom.linkTo(parent.bottom)
             }) {
                 items(album?.songsList ?: emptyList()) { song ->
-                    RenderSong(song = song)
+                    RenderSong(song = song, onSongClick = {_, _ ->
+                    })
                 }
             }
         }

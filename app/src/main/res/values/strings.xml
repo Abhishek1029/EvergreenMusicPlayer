@@ -21,4 +21,9 @@
     <string name="songs">Songs</string>
     <string name="playlist">Playlist</string>
     <string name="settings">Settings</string>
+    <string name="repeat">Repeat</string>
+    <string name="repeat_one">Repeat One</string>
+    <string name="shuffle">Shuffle</string>
+    <string name="favorite_remove">Removed From Favourites</string>
+    <string name="favorite_add">Added to Favourites</string>
 </resources>

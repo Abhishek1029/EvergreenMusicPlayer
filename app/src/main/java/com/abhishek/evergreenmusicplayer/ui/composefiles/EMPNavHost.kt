@@ -4,10 +4,13 @@ import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.media3.common.util.UnstableApi
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.abhishek.evergreenmusicplayer.ui.viewmodel.MusicViewModel
 import com.abhishek.evergreenmusicplayer.utils.AlbumDestination
 import com.abhishek.evergreenmusicplayer.utils.AlbumDetailDestination
 import com.abhishek.evergreenmusicplayer.utils.ArtistDestination
@@ -25,7 +28,7 @@ import com.abhishek.evergreenmusicplayer.utils.showToast
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
 import com.google.gson.Gson
-
+@UnstableApi
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun EMPNavHost(
@@ -33,7 +36,8 @@ fun EMPNavHost(
     navController: NavHostController,
     permissionState: PermissionState,
     startDestination: String,
-    appState: EMPAppState
+    appState: EMPAppState,
+    musicViewModel: MusicViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
     NavHost(navController = navController, startDestination = startDestination) {
@@ -78,7 +82,8 @@ fun EMPNavHost(
         }
 
         composable(SongsDestination.route) {
-            RenderSongs { song ->
+            RenderSongs(musicViewModel = musicViewModel) { song,index ->
+                musicViewModel.playSongs(startIndex = index)
                 navController.navigate(
                     PlayerDestination.createRoute(
                         Uri.encode(
